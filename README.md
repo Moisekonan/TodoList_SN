@@ -9,13 +9,19 @@ ToDoList_SN est une application de gestion de tâches réalisée avec Django. El
 1. Assurez-vous d'avoir Python installé sur votre système. Vous pouvez le télécharger depuis [python.org](https://www.python.org/).
 
 2. Clonez ce dépôt sur votre machine locale en exécutant la commande suivante dans votre terminal :
-   git clone https://github.com/Moisekonan/TodoList_SN.git
+    ```
+    git clone https://github.com/Moisekonan/TodoList_SN.git
+    ```
 
 3. Accédez au répertoire de l'application ToDoList_SN :
-   cd ToDoList_SN
+    ```
+    cd ToDoList_SN
+    ```
 
 4. Créez un environnement virtuel pour l'application :
-python3 -m venv venv
+    ```
+    python3 -m venv venv
+    ```
 
 5. Activez l'environnement virtuel :
 - Sur Windows :
