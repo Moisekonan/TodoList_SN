@@ -1,0 +1,34 @@
+# Fichiers temporaires
+*.pyc
+*.pyo
+*.pyd
+__pycache__
+
+# Fichiers de configuration
+*.swp
+*.env
+*.DS_Store
+
+# Environnement virtuel
+venv/
+env/
+
+# Fichiers de sauvegarde
+*.bak
+*.backup
+*.vscode
+
+# Fichiers de logs
+log/
+logs/
+*.log
+
+# Fichiers statiques et médias générés
+staticfiles/
+media/
+
+# Fichiers spécifiques à l'IDE
+.idea/
+.vscode/
+
+db.sqlite3

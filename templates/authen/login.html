@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Slide Navbar</title>
+    <link
+      rel="stylesheet"
+      type="text/css"
+      href="{% static 'css/authen.css' %}"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <div class="main">
+
+      <div class="login">
+        <form action="{% url "login" %}" method="POST">
+          {% csrf_token %}
+          <label for="chk" aria-hidden="true">Connexion</label>
+          <input type="email" name="email" placeholder="Email" required />
+          <input
+            type="password"
+            name="pswd"
+            placeholder="Mot de passe"
+            required
+          />
+          <button type="submit">Connexion</button>
+        </form>
+        <p class="forgot" style="text-align:center">
+          Vous n'avez pas de compte <a href="{% url "register" %}">S'inscrire</a>
+        </p>
+      </div>
+      
+    </div>
+  </body>
+</html>
