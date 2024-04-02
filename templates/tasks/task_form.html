@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ajouter une Tâche</title>
+    <title>Todo List SN</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -11,15 +11,15 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-      <a class="navbar-brand" href="#">Todo List</a>
+      <a class="navbar-brand" href="#">Todo List SN</a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           {% if request.user.is_authenticated %}
           <li class="nav-item">
-            <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
+            <span class="nav-link">Bonjour, {{ request.user.username }}</span>
           </li>
           <li class="nav-item">
-            <span class="nav-link">Bonjour, {{ request.user.username }}</span>
+            <a class="nav-link" href="{% url 'logout' %}">Déconnexion</a>
           </li>
           {% endif %}
         </ul>
@@ -33,7 +33,7 @@
           <form method="POST">
             {% csrf_token %}
             <div class="form-group">
-              {{ form.title.label_tag }} {{ form.title }}
+              {{ form.titre.label_tag }} {{ form.titre }}
             </div>
             <div class="form-group">
               {{ form.description.label_tag }} {{ form.description }}

@@ -1,7 +1,7 @@
 from django.shortcuts import redirect, render
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
-from django.contrib.auth.decorators import login_required
+from django.contrib import messages
 
 
 def login_view(request):
@@ -17,11 +17,10 @@ def login_view(request):
                 login(request, user)
                 return redirect('index')
             else:
-                print("mot de pass incorrecte")
+                messages.error(request, "Mot de passe incorrect")
         else:
-            print("User does not exist")
-
-    return render(request, 'authen/login.html', {})
+            messages.error(request, "L'utilisateur n'existe pas")
+    return render(request, 'authen/login.html')
 
 
 def register(request):
@@ -35,7 +34,8 @@ def register(request):
             user.save()
             return redirect('login')
         except:
-            return render(request, 'authen/register.html', {'error': 'User already exists'})
+            messages.error(request, "Erreur lors de l'inscription")
+            return render(request, 'authen/register.html')
     return render(request, 'authen/register.html')
 
 

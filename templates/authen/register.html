@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Slide Navbar</title>
+    <title>Todo List SN</title>
     <link rel="stylesheet" type="text/css" href="{% static 'css/authen.css' %}" />
     <link
       href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap"
@@ -11,9 +11,17 @@
   </head>
   <body>
     <div class="main">
-      <input type="checkbox" id="chk" aria-hidden="true" />
 
       <div class="signup">
+        {% if messages %}
+          <div class="alert alert-danger">
+            <ul class="mb-0">
+              {% for message in messages %}
+              <li>{{ message }}</li>
+              {% endfor %}
+            </ul>
+          </div>
+        {% endif %}
         <form action="{% url "register" %}" method="POST">
           {% csrf_token %}
           <label for="chk" aria-hidden="true">Inscription</label>

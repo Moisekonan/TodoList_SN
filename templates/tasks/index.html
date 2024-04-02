@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Todo List</title>
+    <title>Todo List SN</title>
     <link
       rel="stylesheet"
       href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -21,7 +21,7 @@
       class="navbar navbar-expand-lg navbar-light bg-light"
       style="background-color: #6d44b8 !important"
     >
-      <a class="navbar-brand" href="#">Todo List</a>
+      <a class="navbar-brand" href="#">Todo List SN</a>
       <div class="collapse navbar-collapse" id="navbarNav">
         <ul class="navbar-nav ml-auto">
           {% if request.user.is_authenticated %}
@@ -48,7 +48,7 @@
           {% for task in tasks %}
           <div class="card mb-3">
             <div class="card-body">
-              <h5 class="card-title">{{ task.title }}</h5>
+              <h5 class="card-title">{{ task.titre }}</h5>
               <p class="card-text">{{ task.description }}</p>
               <p class="card-text">
                 <small class="text-muted"
