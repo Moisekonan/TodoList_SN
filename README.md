@@ -1,5 +1,5 @@
 # ToDoList_SN
-
+ 
 ## Description
 
 ToDoList_SN est une application de gestion de tâches réalisée avec Django. Elle permet aux utilisateurs de créer, modifier et supprimer des tâches à faire.
