@@ -30,14 +30,18 @@ def register(request):
         # TODO: you use the e-mail address and password to authenticate the user, 
         # check that the e-mail address is not being used
         email = request.POST.get("email", None)
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Cette adresse e-mail est déjà utilisée.")
+            return render(request, "authen/register.html")
+        
         password = request.POST.get("pswd", None)
 
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
             return redirect("login")
-        except:  # TODO: get an exception and write the specific error message
-            messages.error(request, "Erreur lors de l'inscription")
+        except Exception as e:  # TODO: get an exception and write the specific error message
+            messages.error(request, f"Erreur lors de l'inscription: {str(e)}")
             return render(request, "authen/register.html")
     return render(request, "authen/register.html")
 

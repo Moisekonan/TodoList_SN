@@ -78,6 +78,22 @@
           {% endfor %}
         </div>
       </div>
+
+      <div class="text-center">
+        {% if tasks.has_previous %}
+          <a
+            href="?page={{ tasks.previous_page_number }}"
+            class="btn btn-primary mr-2"
+            ><</a
+          >
+        {% endif %} 
+        {% if tasks.has_next %}
+          <a href="?page={{ tasks.next_page_number }}" class="btn btn-primary mr-2"
+            >></a
+          >
+        {% endif %}
+      </div>
+
     </div>
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>

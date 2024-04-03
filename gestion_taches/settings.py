@@ -24,11 +24,14 @@ SECRET_KEY = 'django-insecure-d*rdbx#-07nwfrrdi$6xc_&o#z4u@y&a*etpt_aw%1a%ay2$!s
 
 # SECURITY WARNING: don't run with debug turned on in production!
 
-# TODO: pass DEBUG=False 
+# TODO: pass DEBUG=False
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
+INTERNAL_IPS = [
+    "127.0.0.1",
+]
 
 # Application definition
 
@@ -41,9 +44,11 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'authen',
     'tasks',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -126,11 +131,10 @@ MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
 
-
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CSRF_COOKIE_SECURE = True 
+CSRF_COOKIE_SECURE = True
 CSRF_COOKIE_HTTPONLY = True
