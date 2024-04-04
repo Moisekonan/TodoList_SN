@@ -31,14 +31,18 @@ def register(request):
         email = request.POST.get("email", None)
         password = request.POST.get("pswd", None)
 
-        if User.objects.filter(email=email).exists() or User.objects.filter(username=username).exists():
-            messages.error(request, "Cette adresse e-mail ou ce nom d'utilisateur est déjà utilisée.")
+        if User.objects.filter(email=email).exists():
+            messages.error(request, "Cette adresse e-mail est déjà utilisée.")
+            return render(request, "authen/register.html")
+        
+        if User.objects.filter(username=username).exists():
+            messages.error(request, "ce nom d'utilisateur est déjà utilisée.")
             return render(request, "authen/register.html")
 
         try:
             validate_password(password)
         except ValidationError as error:
-            messages.error(request, f"Le mot de passe ne répond pas aux critères de sécurité : {', '.join(error.messages)}")
+            messages.error(request, f"{', '.join(error.messages)}")
             return render(request, "authen/register.html")
 
         try:
