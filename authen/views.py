@@ -2,6 +2,8 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import logout, authenticate, login
 from django.contrib.auth.models import User
 from django.contrib import messages
+from django.contrib.auth.password_validation import validate_password
+from django.core.exceptions import ValidationError
 
 
 def login_view(request):
@@ -23,27 +25,32 @@ def login_view(request):
             messages.error(request, "L'utilisateur n'existe pas")
     return render(request, "authen/login.html")
 
-
 def register(request):
     if request.method == "POST":
         username = request.POST.get("username", None)
-        # TODO: you use the e-mail address and password to authenticate the user, 
-        # check that the e-mail address is not being used
         email = request.POST.get("email", None)
-        if User.objects.filter(email=email).exists():
-            messages.error(request, "Cette adresse e-mail est déjà utilisée.")
-            return render(request, "authen/register.html")
-        
         password = request.POST.get("pswd", None)
+
+        if User.objects.filter(email=email).exists() or User.objects.filter(username=username).exists():
+            messages.error(request, "Cette adresse e-mail ou ce nom d'utilisateur est déjà utilisée.")
+            return render(request, "authen/register.html")
+
+        try:
+            validate_password(password)
+        except ValidationError as error:
+            messages.error(request, f"Le mot de passe ne répond pas aux critères de sécurité : {', '.join(error.messages)}")
+            return render(request, "authen/register.html")
 
         try:
             user = User.objects.create_user(username, email, password)
             user.save()
             return redirect("login")
-        except Exception as e:  # TODO: get an exception and write the specific error message
-            messages.error(request, f"Erreur lors de l'inscription: {str(e)}")
+        except Exception as e:
+            messages.error(request, "Une erreur s'est produite lors de l'inscription.")
             return render(request, "authen/register.html")
+    
     return render(request, "authen/register.html")
+
 
 
 def logout_view(request):
